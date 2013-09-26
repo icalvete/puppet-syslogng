@@ -1,0 +1,5 @@
+filter f_<%= @name -%> {facility(local4);};
+destination d_<%= @name -%> {udp("<%= @syslog_remote_server -%>" port(514));};
+destination d_<%= @name -%>_logstash {udp("<%= @syslog_remote_server -%>" port(5514));};
+log {source(s_src); filter(f_<%= @name -%>); destination(d_<%= @name -%>);};
+log {source(s_src); filter(f_<%= @name -%>); destination(d_<%= @name -%>_logstash);};
