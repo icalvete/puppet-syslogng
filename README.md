@@ -19,8 +19,8 @@ Puppet manifest to install and configure any syslog role
 
       syslogng::load_conf{'syslog_receiver':
         conf    => { source => '00receiver.conf.erb', target => '00sp_receiver.conf' },
-        log_dir => hiera('sp_log_dir'),
-        log     => hiera('sp_log'),
+        log_dir => hiera('syslog_log_dir'),
+        log     => hiera('syslog_log'),
       }
     }
 
