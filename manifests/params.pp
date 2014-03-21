@@ -2,7 +2,7 @@ class syslogng::params {
 
   case $::operatingsystem {
     /^(Debian|Ubuntu)$/: {
-      $syslogng_package     = 'syslog-ng'
+      $syslogng_package     = 'syslog-ng-core'
       $syslogng_service     = 'syslog-ng'
       $syslogng_config      = '/etc/syslog-ng'
       $syslogng_config_file = 'syslog-ng.conf'
