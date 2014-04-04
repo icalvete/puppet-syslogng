@@ -28,9 +28,11 @@ Puppet manifest to install and configure any syslog role
 
 Where *00receiver.conf.erb* contains ...
 
+```puppet
     source s_udp {udp(port(514));};
     destination d_<%= @name -%> {file("<%= @root_log_dir -%>/<%= @log_dir -%>/<%= @log -%>");};
     log {source(s_udp); destination(d_<%= @name -%>);};
+```
 
 ##TODO
 
