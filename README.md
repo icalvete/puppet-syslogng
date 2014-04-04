@@ -15,6 +15,7 @@ Puppet manifest to install and configure any syslog role
 
 ##Example:
 
+```puppet
     class roles::syslog_remote_server inherits roles {
 
       syslogng::load_conf{'syslog_receiver':
@@ -23,6 +24,7 @@ Puppet manifest to install and configure any syslog role
         log     => hiera('syslog_log'),
       }
     }
+```
 
 Where *00receiver.conf.erb* contains ...
 
