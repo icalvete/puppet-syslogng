@@ -3,7 +3,8 @@ define syslogng::load_conf (
   $conf                 = undef,
   $log_dir              = undef,
   $log                  = undef,
-  $syslog_remote_server = undef
+  $syslog_remote_server = undef,
+  $syslog_remote_port   = undef
 
 ) {
 
