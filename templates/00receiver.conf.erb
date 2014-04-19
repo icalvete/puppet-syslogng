@@ -1,3 +1,7 @@
+filter f_<%= @name -%>_local4 {facility(local4);};
+filter f_<%= @name -%>_local5 {facility(local5);};
 source s_udp {udp(port(514));};
-destination d_<%= @name -%> {file("<%= @root_log_dir -%>/<%= @log_dir -%>/<%= @log -%>");};
-log {source(s_udp); destination(d_<%= @name -%>);};
+destination d_<%= @name -%>_local4 {file("<%= @root_log_dir -%>/<%= @log_dir -%>/local4_<%= @log -%>");};
+destination d_<%= @name -%>_local5 {file("<%= @root_log_dir -%>/<%= @log_dir -%>/local5_<%= @log -%>");};
+log {source(s_udp); filter(f_<%= @name -%>_local4); destination(d_<%= @name -%>_local4);};
+log {source(s_udp); filter(f_<%= @name -%>_local5); destination(d_<%= @name -%>_local5);};
