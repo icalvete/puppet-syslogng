@@ -1,10 +1,12 @@
 define syslogng::load_conf (
 
-  $conf                 = undef,
-  $log_dir              = undef,
-  $log                  = undef,
-  $syslog_remote_server = undef,
-  $syslog_remote_port   = undef
+  $conf                   = undef,
+  $log_dir                = undef,
+  $log                    = undef,
+  $syslog_remote_server   = undef,
+  $syslog_remote_port     = 514,
+  $logstash_remote_server = undef,
+  $logstash_remote_port   = undef
 
 ) {
 
@@ -31,6 +33,10 @@ define syslogng::load_conf (
 
   if ! $target {
     fail('syslogng::load_conf needs conf_target parameter.')
+  }
+
+  if ( $logstash_remote_server and $logstash_remote_port == undef ) or ( $logstash_remote_server == undef and $logstash_remote_port ) {
+    fail('To use logstash with syslogng::load_conf logstash_remote_server and logstash_remote_port parameters are needed.')
   }
 
   $root_log_dir = $syslogng::params::root_log_dir
