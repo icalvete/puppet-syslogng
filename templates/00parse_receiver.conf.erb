@@ -1,0 +1,5 @@
+filter f_syslog_receiver_local6 {facility(local6);};
+
+destination d_syslog_receiver_local6 {file("<%= @root_log_dir -%>/<%= @log_dir -%>/<%= @log -%>.${PRIORITY}.log" perm(0644));};                                            
+
+log {source(s_udp); filter(f_syslog_receiver_local6); destination(d_syslog_receiver_local6);};

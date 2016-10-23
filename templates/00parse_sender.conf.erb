@@ -1,0 +1,12 @@
+filter f_parse_sender {facility(local6);};
+
+source s_parse_file0 {
+file("/var/log/upstart/parse-server_cgib0.log" program_override("parse") flags(no-parse) default-facility(local6) default-priority(info) multi-line-mode(indented));
+};
+source s_parse_file1 {
+file("/var/log/upstart/parse-server_cgib1.log" program_override("parse") flags(no-parse) default-facility(local6) default-priority(info) multi-line-mode(indented));
+};
+
+log {source(s_parse_file0); filter(f_parse_sender); destination(d_syslog_sender);};
+log {source(s_parse_file1); filter(f_parse_sender); destination(d_syslog_sender);};
+log {source(s_src); filter(f_parse_sender); destination(d_syslog_sender);};
