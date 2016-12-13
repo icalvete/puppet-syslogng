@@ -1,6 +1,7 @@
 filter f_<%= @name -%>_local3 {facility(local3);};
 filter f_<%= @name -%>_local4 {facility(local4);};
 filter f_<%= @name -%>_local5 {facility(local5);};
+filter f_<%= @name -%>_all {facility(local3) or facility(local4) or facility(local5);};
 
 source s_udp {udp(port(514));};
 
@@ -14,4 +15,4 @@ log {source(s_udp); filter(f_<%= @name -%>_local5); destination(d_<%= @name -%>_
 
 destination d_syslog_receiver_all {file("<%= @root_log_dir -%>/<%= @log_dir -%>/${FACILITY}_${LEVEL}_${LEVEL_NUM}.log" create_dirs(yes) template("$DATE $LEVEL_NUM $LEVEL $HOST $MESSAGE\n") perm(0644));};
 
-log {source(s_udp); destination(d_syslog_receiver_all);};
+log {source(s_udp); filter(f_syslog_receiver_all); destination(d_syslog_receiver_all);};

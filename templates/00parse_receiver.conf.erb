@@ -1,5 +1,10 @@
-filter f_syslog_receiver_local6 {facility(local6);};
+filter f_syslog_receiver_local6 {facility(local6);};                                                                                                                                                                                          
+filter f_not_match_0 { not message("object Object");};
 
-destination d_syslog_receiver_local6 {file("<%= @root_log_dir -%>/<%= @log_dir -%>/<%= @log -%>.${PRIORITY}.log" perm(0644));};                                            
-
-log {source(s_udp); filter(f_syslog_receiver_local6); destination(d_syslog_receiver_local6);};
+destination d_syslog_receiver_local6 {file("/var/log/parse/parse-server.${PRIORITY}.log" perm(0644));};    
+log {
+  source(s_udp); 
+  filter(f_not_match_0);
+  filter(f_syslog_receiver_local6); 
+  destination(d_syslog_receiver_local6);
+};
