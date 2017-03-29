@@ -11,7 +11,7 @@ class syslogng::config {
   file {'syslogng_config_file':
     ensure => present,
     path   => "${syslogng::params::syslogng_config}/${syslogng::params::syslogng_config_file}",
-    source => "puppet:///modules/${module_name}/${syslogng::params::syslogng_config_file}",
+    source => "puppet:///modules/${module_name}/${lsbdistcodename}/${syslogng::params::syslogng_config_file}",
     owner  => 'root',
     group  => 'root',
     mode   => '0644'
