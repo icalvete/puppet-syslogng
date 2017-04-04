@@ -1,19 +1,19 @@
-#puppet-syslogng
+# puppet-syslogng
 
 Puppet manifest to install and configure any syslog role
 
 [![Build Status](https://secure.travis-ci.org/icalvete/puppet-syslogng.png)](http://travis-ci.org/icalvete/puppet-syslogng)
 
-##Actions:
+## Actions:
 
 Puppet manifest to install and configure any syslog role
 
-##Requires:
+## Requires:
 
 * Only works on Ubuntu
 * [hiera](http://docs.puppetlabs.com/hiera/1/index.html)
 
-##Example:
+## Example:
 
 ```puppet
     class roles::syslog_remote_server inherits roles {
@@ -34,10 +34,10 @@ Where *00receiver.conf.erb* contains ...
     log {source(s_udp); destination(d_<%= @name -%>);};
 ```
 
-##TODO
+## TODO
 
 This manifest must be **much more** general.
 
-##Authors:
+## Authors:
 
 Israel Calvete Talavera <icalvete@gmail.com>
