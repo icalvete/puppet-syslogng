@@ -1,8 +1,9 @@
 class syslogng::params {
 
-  $root_log_dir  = hiera('root_log_dir', '/var/log')
-  $remote_server = hiera('syslog_remote_server')
-  $remote_port   = hiera('syslog_remote_port')
+  $root_log_dir      = hiera('root_log_dir', '/var/log')
+  $remote_server     = hiera('syslog_remote_server')
+  $remote_port       = hiera('syslog_remote_port')
+  $logstash_protocol = 'tcp'
 
   case $::operatingsystem {
     /^(Debian|Ubuntu)$/: {

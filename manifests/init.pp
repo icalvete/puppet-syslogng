@@ -1,4 +1,8 @@
-class syslogng inherits syslogng::params {
+class syslogng (
+
+  $logstash_protocol = $syslogng::params::logstash_protocol
+
+) inherits syslogng::params {
 
   anchor{'syslogng::begin':
     before  => Class['syslogng::install']
