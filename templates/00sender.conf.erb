@@ -1,4 +1,4 @@
-filter f_<%= @name -%> {facility(local3, local4, local5);};
+filter f_<%= @name -%> {facility(local3, local4, local5, local6);};
 
 <% if @remote_server.is_a?(Array) -%>
 <% @remote_server.each_with_index do |rs, n| -%>

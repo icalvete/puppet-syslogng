@@ -1,17 +1,20 @@
 filter f_<%= @name -%>_local3 {facility(local3);};
 filter f_<%= @name -%>_local4 {facility(local4);};
 filter f_<%= @name -%>_local5 {facility(local5);};
-filter f_<%= @name -%>_all {facility(local3) or facility(local4) or facility(local5);};
+filter f_<%= @name -%>_local6 {facility(local6);};
+filter f_<%= @name -%>_all {facility(local3) or facility(local4) or facility(local5) or facility(local6);};
 
 source s_udp {udp(port(514));};
 
 destination d_<%= @name -%>_local3 {file("<%= @root_log_dir -%>/<%= @log_dir -%>/local3_<%= @log -%>" perm(0644));};
 destination d_<%= @name -%>_local4 {file("<%= @root_log_dir -%>/<%= @log_dir -%>/local4_<%= @log -%>" perm(0644));};
 destination d_<%= @name -%>_local5 {file("<%= @root_log_dir -%>/<%= @log_dir -%>/local5_<%= @log -%>" perm(0644));};
+destination d_<%= @name -%>_local6 {file("<%= @root_log_dir -%>/<%= @log_dir -%>/local6_<%= @log -%>" perm(0644));};
 
 log {source(s_udp); filter(f_<%= @name -%>_local3); destination(d_<%= @name -%>_local3);};
 log {source(s_udp); filter(f_<%= @name -%>_local4); destination(d_<%= @name -%>_local4);};
 log {source(s_udp); filter(f_<%= @name -%>_local5); destination(d_<%= @name -%>_local5);};
+log {source(s_udp); filter(f_<%= @name -%>_local6); destination(d_<%= @name -%>_local6);};
 
 destination d_syslog_receiver_all {file("<%= @root_log_dir -%>/<%= @log_dir -%>/${FACILITY}_${LEVEL}_${LEVEL_NUM}.log" create_dirs(yes) template("$DATE $LEVEL_NUM $LEVEL $HOST $MESSAGE\n") perm(0644));};
 
