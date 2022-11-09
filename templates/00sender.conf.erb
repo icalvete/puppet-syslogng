@@ -12,5 +12,5 @@ log {source(s_src); filter(f_<%= @name -%>); destination(d_<%= @name -%>);};
 
 <% if @logstash_remote_server and @logstash_remote_port -%>
 destination d_<%= @name -%>_logstash {<%= scope.lookupvar('syslogng::logstash_protocol') -%>("<%= @logstash_remote_server -%>" port(<%= @logstash_remote_port -%>));};
-log {source(s_src); filter(f_<%= @name -%>); destination(d_<%= @name -%>_logstash);};
+log {source(s_udp); filter(f_<%= @name -%>); destination(d_<%= @name -%>_logstash);};
 <% end -%>
