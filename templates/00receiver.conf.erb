@@ -16,6 +16,6 @@ log {source(s_udp); filter(f_<%= @name -%>_local4); destination(d_<%= @name -%>_
 log {source(s_udp); filter(f_<%= @name -%>_local5); destination(d_<%= @name -%>_local5);};
 log {source(s_udp); filter(f_<%= @name -%>_local6); destination(d_<%= @name -%>_local6);};
 
-destination d_syslog_receiver_all {file("<%= @root_log_dir -%>/<%= @log_dir -%>/${FACILITY}_${LEVEL}_${LEVEL_NUM}.log" create_dirs(yes) template("$DATE $LEVEL_NUM $LEVEL $HOST $MESSAGE\n") perm(0644));};
+#destination d_syslog_receiver_all {file("<%= @root_log_dir -%>/<%= @log_dir -%>/${FACILITY}_${LEVEL}_${LEVEL_NUM}.log" create_dirs(yes) template("$DATE $LEVEL_NUM $LEVEL $HOST $MESSAGE\n") perm(0644));};
 
-log {source(s_udp); filter(f_syslog_receiver_all); destination(d_syslog_receiver_all);};
+#log {source(s_udp); filter(f_syslog_receiver_all); destination(d_syslog_receiver_all);};
